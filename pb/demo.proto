@@ -19,7 +19,7 @@ package hipstershop;
 // -----------------Quote service-----------------
 
 
-import "https://raw.githubusercontent.com/steinkohl/quote-service/main/proto/quote.proto"
+import "https://raw.githubusercontent.com/steinkohl/quote-service/main/proto/quote.proto";
 
 
 // -----------------Cart service-----------------
