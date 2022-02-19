@@ -16,6 +16,12 @@ syntax = "proto3";
 
 package hipstershop;
 
+// -----------------Quote service-----------------
+
+
+import "https://raw.githubusercontent.com/steinkohl/quote-service/main/proto/quote.proto"
+
+
 // -----------------Cart service-----------------
 
 service CartService {
