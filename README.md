@@ -162,8 +162,7 @@ Find **Protocol Buffers Descriptions** at the [`./pb` directory](./pb).
 | [recommendationservice](./src/recommendationservice) | Python        | Recommends other products based on what's given in the cart.                                                                      |
 | [adservice](./src/adservice)                         | Java          | Provides text ads based on given context words.                                                                                   |
 | [loadgenerator](./src/loadgenerator)                 | Python/Locust | Continuously sends requests imitating realistic user shopping flows to the frontend.    
-                                        |
-| [quote-service](https://github.com/steinkohl/quote-service) | Python | Provides gRPC API to request quotes.
+| [quote-service](https://github.com/steinkohl/quote-service) | Python        | Provides gRPC API to request quotes.                                                                     |
 
 ## Features
 
