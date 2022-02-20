@@ -187,6 +187,12 @@ func (fe *frontendServer) productHandler(w http.ResponseWriter, r *http.Request)
 		renderHTTPError(log, r, w, errors.Wrap(err, "failed to get product recommendations"), http.StatusInternalServerError)
 		return
 	}
+	
+	quoteOfTheDay, err := fe.getQuoteOfTheDay(r.Context())
+	if err != nil {
+    		renderHTTPError(log, r, w, errors.Wrap(err, "could not retrieve quote"), http.StatusInternalServerError)
+		return
+	}
 
 	product := struct {
 		Item  *pb.Product
@@ -207,6 +213,7 @@ func (fe *frontendServer) productHandler(w http.ResponseWriter, r *http.Request)
 		"platform_name":     plat.provider,
 		"is_cymbal_brand":   isCymbalBrand,
 		"deploymentDetails": deploymentDetailsMap,
+		"quoteOfTheDay": quoteOfTheDay,
 	}); err != nil {
 		log.Println(err)
 	}
@@ -273,6 +280,12 @@ func (fe *frontendServer) viewCartHandler(w http.ResponseWriter, r *http.Request
 		renderHTTPError(log, r, w, errors.Wrap(err, "failed to get shipping quote"), http.StatusInternalServerError)
 		return
 	}
+	
+	quoteOfTheDay, err := fe.getQuoteOfTheDay(r.Context())
+	if err != nil {
+    		renderHTTPError(log, r, w, errors.Wrap(err, "could not retrieve quote"), http.StatusInternalServerError)
+		return
+	}
 
 	type cartItemView struct {
 		Item     *pb.Product
@@ -319,6 +332,7 @@ func (fe *frontendServer) viewCartHandler(w http.ResponseWriter, r *http.Request
 		"platform_name":     plat.provider,
 		"is_cymbal_brand":   isCymbalBrand,
 		"deploymentDetails": deploymentDetailsMap,
+		"quoteOfTheDay": quoteOfTheDay,
 	}); err != nil {
 		log.Println(err)
 	}
@@ -378,6 +392,12 @@ func (fe *frontendServer) placeOrderHandler(w http.ResponseWriter, r *http.Reque
 		renderHTTPError(log, r, w, errors.Wrap(err, "could not retrieve currencies"), http.StatusInternalServerError)
 		return
 	}
+	
+	quoteOfTheDay, err := fe.getQuoteOfTheDay(r.Context())
+	if err != nil {
+    		renderHTTPError(log, r, w, errors.Wrap(err, "could not retrieve quote"), http.StatusInternalServerError)
+		return
+	}
 
 	if err := templates.ExecuteTemplate(w, "order", map[string]interface{}{
 		"session_id":        sessionID(r),
@@ -392,6 +412,7 @@ func (fe *frontendServer) placeOrderHandler(w http.ResponseWriter, r *http.Reque
 		"platform_name":     plat.provider,
 		"is_cymbal_brand":   isCymbalBrand,
 		"deploymentDetails": deploymentDetailsMap,
+		"quoteOfTheDay": quoteOfTheDay,
 	}); err != nil {
 		log.Println(err)
 	}
