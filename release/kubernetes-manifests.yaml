@@ -220,6 +220,7 @@ spec:
       containers:
         - name: server
           image: csecsecse/frontend:latest
+          imagePullPolicy: Always
           ports:
           - containerPort: 8080
           readinessProbe:
@@ -766,6 +767,7 @@ spec:
       containers:
       - name: server
         image: csecsecse/quote-service:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 50055
         env:
