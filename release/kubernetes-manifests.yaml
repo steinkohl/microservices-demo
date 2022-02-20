@@ -219,7 +219,7 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: csecsecse/frontend
+          image: csecsecse/frontend:latest
           ports:
           - containerPort: 8080
           readinessProbe:
