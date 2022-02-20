@@ -69,6 +69,11 @@ func (fe *frontendServer) homeHandler(w http.ResponseWriter, r *http.Request) {
 		renderHTTPError(log, r, w, errors.Wrap(err, "could not retrieve cart"), http.StatusInternalServerError)
 		return
 	}
+	quoteOfTheDay, err := fe.getQuoteOfTheDay(r.Context())
+	if err != nil {
+    		renderHTTPError(log, r, w, errors.Wrap(err, "could not retrieve quote"), http.StatusInternalServerError)
+		return
+	}
 
 	type productView struct {
 		Item  *pb.Product
@@ -116,6 +121,7 @@ func (fe *frontendServer) homeHandler(w http.ResponseWriter, r *http.Request) {
 		"platform_name":     plat.provider,
 		"is_cymbal_brand":   isCymbalBrand,
 		"deploymentDetails": deploymentDetailsMap,
+		"quoteOfTheDay": quoteOfTheDay,
 	}); err != nil {
 		log.Error(err)
 	}
