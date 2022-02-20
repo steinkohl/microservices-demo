@@ -125,3 +125,9 @@ func (fe *frontendServer) getAd(ctx context.Context, ctxKeys []string) ([]*pb.Ad
 	})
 	return resp.GetAds(), errors.Wrap(err, "failed to get ads")
 }
+
+func (fe *frontendServer) getQuoteOfTheDay(ctx context.Context) (string, error) {
+    resp, err := pb.NewQuoteServiceClient(fe.quoteSvcConn).GetQuoteOfTheDay(ctx, &pb.QuoteRequest{
+    })
+    return resp.Message, errors.Wrap(err, "failed to get quote")
+}
