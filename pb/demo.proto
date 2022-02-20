@@ -16,10 +16,22 @@ syntax = "proto3";
 
 package hipstershop;
 
+option go_package = "./";
+
 // -----------------Quote service-----------------
 
 
-import "https://raw.githubusercontent.com/steinkohl/quote-service/main/proto/quote.proto";
+service QuoteService {
+  // Sends a quote
+  rpc GetQuoteOfTheDay(QuoteRequest) returns (QuoteReply);
+}
+
+message QuoteRequest {}
+
+// The response message containing the quote
+message QuoteReply {
+  string message = 1;
+}
 
 
 // -----------------Cart service-----------------
