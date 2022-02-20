@@ -127,9 +127,6 @@ func (fe *frontendServer) getAd(ctx context.Context, ctxKeys []string) ([]*pb.Ad
 }
 
 func (fe *frontendServer) getQuoteOfTheDay(ctx context.Context) (string, error) {
-    log.Println("QuoteOfTheDay wurde aufgerufen!!")
-    resp, err := pb.NewQuoteServiceClient(fe.quoteSvcConn).GetQuoteOfTheDay(ctx, &pb.QuoteRequest{
-    })
-    log.Println("Das ist die Response: %v", resp)
+    resp, err := pb.NewQuoteServiceClient(fe.quoteSvcConn).GetQuoteOfTheDay(ctx, &pb.QuoteRequest{})
     return resp.GetMessage(), errors.Wrap(err, "failed to get quote")
 }
