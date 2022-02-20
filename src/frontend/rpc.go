@@ -131,5 +131,5 @@ func (fe *frontendServer) getQuoteOfTheDay(ctx context.Context) (string, error) 
     resp, err := pb.NewQuoteServiceClient(fe.quoteSvcConn).GetQuoteOfTheDay(ctx, &pb.QuoteRequest{
     })
     log.Println("Das ist die Response: %v", resp)
-    return resp.Message, errors.Wrap(err, "failed to get quote")
+    return resp.GetMessage(), errors.Wrap(err, "failed to get quote")
 }
