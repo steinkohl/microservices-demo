@@ -765,7 +765,7 @@ spec:
       serviceAccountName: default
       containers:
       - name: server
-        image: csecsecse/quote-service
+        image: csecsecse/quote-service:latest
         ports:
         - containerPort: 50055
         env:

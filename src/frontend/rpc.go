@@ -18,8 +18,6 @@ import (
 	"context"
 	"time"
 
-    "fmt"
-
 	pb "github.com/GoogleCloudPlatform/microservices-demo/src/frontend/genproto"
 
 	"github.com/pkg/errors"
@@ -129,9 +127,9 @@ func (fe *frontendServer) getAd(ctx context.Context, ctxKeys []string) ([]*pb.Ad
 }
 
 func (fe *frontendServer) getQuoteOfTheDay(ctx context.Context) (string, error) {
-    fmt.Println("QuoteOfTheDay wurde aufgerufen!")
+    log.Println("QuoteOfTheDay wurde aufgerufen!")
     resp, err := pb.NewQuoteServiceClient(fe.quoteSvcConn).GetQuoteOfTheDay(ctx, &pb.QuoteRequest{
     })
-    fmt.Println("Das ist die Response: %v", resp)
+    log.Println("Das ist die Response: %v", resp)
     return resp.Message, errors.Wrap(err, "failed to get quote")
 }
